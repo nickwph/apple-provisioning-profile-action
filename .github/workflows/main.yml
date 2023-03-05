@@ -1,7 +1,7 @@
-name: Main workflow
+name: Main testing workflow
 on: [push, pull_request, workflow_dispatch]
 jobs:
-  run:
+  test:
     runs-on: macos-latest
     steps:
       - name: Checkout
