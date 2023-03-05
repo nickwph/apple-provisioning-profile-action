@@ -1,10 +1,12 @@
-name: Testing workflow
+name: Main workflow
 on: [push, pull_request, workflow_dispatch]
 jobs:
   run:
     runs-on: macos-latest
     steps:
-      - name: testing
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Testing
         uses: ./
         with:
           build-certificate-base64: ${{ secrets.IOS_BUILD_CERTIFICATE_P12_BASE64 }}
