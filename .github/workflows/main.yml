@@ -1,10 +1,10 @@
-name: Main
+name: "Main"
 on: [push, pull_request, workflow_dispatch]
 jobs:
   run:
     runs-on: macos-latest
     steps:
-      - uses: ../..
+      - uses: '../..'
         with:
           build-certificate-base64: ${{ secrets.IOS_BUILD_CERTIFICATE_P12_BASE64 }}
           p12-password: ${{ secrets.IOS_BUILD_CERTIFICATE_P12_PASSWORD }}
