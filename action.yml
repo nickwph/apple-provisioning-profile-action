@@ -1,6 +1,9 @@
 name: Apple Certificate Action
 description: Installing an Apple certificate on macOS runners for Xcode development
-author: Nicholas Wong <@nickwph>
+author: Nicholas Wong
+branding:
+  icon: anchor
+  color: orange
 inputs:
   build-certificate-base64:
     description: Your Apple signing certificate in p12 format and base64 encoded
