@@ -8,22 +8,35 @@ jobs:
       - name: Run nickwph/apple-provisioning-profile-action@v1
         uses: ./
         with:
-          profile-base64: ${{ secrets.PROFILE_BASE64 }}
+          profile-base64: YXBwbGUtcHJvdmlzaW9uaW5nLXByb2ZpbGUtYWN0aW9u
+      - run: |
+        ACTUAL=$(~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
+        EXPECTED="apple-provisioning-profile-action"
+        [[ "$ACTUAL" = "$EXPECTED" ]] && exit 0 || exit 1
   test-with-file:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
+      - run: echo YXBwbGUtcHJvdmlzaW9uaW5nLXByb2ZpbGUtYWN0aW9uLTI= > $RUNNER_TEMP/fake.mobileprovision
       - name: Run nickwph/apple-provisioning-profile-action@v1
         uses: ./
         with:
-          profile-base64: ${{ secrets.PROFILE_BASE64 }}
+          profile-file: $RUNNER_TEMP/fake.mobileprovision
       - run: |
-          
+        ACTUAL=$(~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
+        EXPECTED="apple-provisioning-profile-action-2"
+        [[ "$ACTUAL" = "$EXPECTED" ]] && exit 0 || exit 1
   test-base64-override-file:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
+      - run: echo YXBwbGUtcHJvdmlzaW9uaW5nLXByb2ZpbGUtYWN0aW9uLTI= > $RUNNER_TEMP/fake.mobileprovision
       - name: Run nickwph/apple-provisioning-profile-action@v1
         uses: ./
         with:
-          profile-base64: ${{ secrets.PROFILE_BASE64 }}
+          profile-base64: YXBwbGUtcHJvdmlzaW9uaW5nLXByb2ZpbGUtYWN0aW9u
+          profile-file: $RUNNER_TEMP/fake.mobileprovision
+      - run: |
+        ACTUAL=$(~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
+        EXPECTED="apple-provisioning-profile-action"
+        [[ "$ACTUAL" = "$EXPECTED" ]] && exit 0 || exit 1

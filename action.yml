@@ -1,5 +1,5 @@
-name: Apple Certificate Action
-description: Installing an Apple certificate on macOS runners for Xcode development
+name: Apple Provisioning Profile Action
+description: Install a provision profile on macOS runners for Xcode development
 author: Nicholas Wong
 branding:
   icon: anchor
@@ -18,7 +18,7 @@ runs:
       if: ${{ inputs.profile-file != null }}
       run: cp ${{ inputs.profile-file != null }} $RUNNER_TEMP/profile.mobileprovision
     - shell: bash
-      if: ${{ inputs.profile != null }}
+      if: ${{ inputs.profile-base64 != null }}
       run: echo -n ${{ inputs.profile-base64 }} | base64 --decode -o $RUNNER_TEMP/profile.mobileprovision
     - shell: bash
       run: |
