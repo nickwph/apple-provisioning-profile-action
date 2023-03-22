@@ -18,11 +18,13 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo YXBwbGUtcHJvdmlzaW9uaW5nLXByb2ZpbGUtYWN0aW9uLTI= > $RUNNER_TEMP/fake.mobileprovision
+      - name: Create fake profile
+        run: echo YXBwbGUtcHJvdmlzaW9uaW5nLXByb2ZpbGUtYWN0aW9uLTI= > $RUNNER_TEMP/fake.mobileprovision
       - name: Run nickwph/apple-provisioning-profile-action@v1
         uses: ./
         with:
           profile-file: $RUNNER_TEMP/fake.mobileprovision
+      - run: ls -la ~/Library/MobileDevice/Provisioning\ Profiles
       - name: Verify result
         run: |
           ACTUAL=$(cat ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
@@ -32,7 +34,8 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo YXBwbGUtcHJvdmlzaW9uaW5nLXByb2ZpbGUtYWN0aW9uLTI= > $RUNNER_TEMP/fake.mobileprovision
+      - name: Create fake profile
+        run: echo YXBwbGUtcHJvdmlzaW9uaW5nLXByb2ZpbGUtYWN0aW9uLTI= > $RUNNER_TEMP/fake.mobileprovision
       - name: Run nickwph/apple-provisioning-profile-action@v1
         uses: ./
         with:
