@@ -19,24 +19,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Create fake profile
-        run: echo YXBwbGUtcHJvdmlzaW9uaW5nLXByb2ZpbGUtYWN0aW9uLTI= > $RUNNER_TEMP/fake.mobileprovision
+        run: echo fake-profile-file > $RUNNER_TEMP/fake.mobileprovision
       - name: Run nickwph/apple-provisioning-profile-action@v1
         uses: ./
         with:
           profile-file: $RUNNER_TEMP/fake.mobileprovision
-      - run: ls -la ~/Library/MobileDevice/Provisioning\ Profiles
-      - run: cat ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision
       - name: Verify result
         run: |
           ACTUAL=$(cat ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
-          EXPECTED="apple-provisioning-profile-action-2"
+          EXPECTED="fake-profile-file"
           [[ "$ACTUAL" = "$EXPECTED" ]] && exit 0 || exit 1
-  test-base64-override-file:
+  test-base64-overrides-file:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
       - name: Create fake profile
-        run: echo YXBwbGUtcHJvdmlzaW9uaW5nLXByb2ZpbGUtYWN0aW9uLTI= > $RUNNER_TEMP/fake.mobileprovision
+        run: echo fake-profile-file > $RUNNER_TEMP/fake.mobileprovision
       - name: Run nickwph/apple-provisioning-profile-action@v1
         uses: ./
         with:
