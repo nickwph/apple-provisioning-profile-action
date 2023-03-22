@@ -16,7 +16,7 @@ runs:
   steps:
     - shell: bash
       if: ${{ inputs.profile-file != null }}
-      run: cp ${{ inputs.profile-file != null }} $RUNNER_TEMP/profile.mobileprovision
+      run: cp ${{ inputs.profile-file }} $RUNNER_TEMP/profile.mobileprovision
     - shell: bash
       if: ${{ inputs.profile-base64 != null }}
       run: echo -n ${{ inputs.profile-base64 }} | base64 --decode -o $RUNNER_TEMP/profile.mobileprovision

@@ -9,7 +9,8 @@ jobs:
         uses: ./
         with:
           profile-base64: YXBwbGUtcHJvdmlzaW9uaW5nLXByb2ZpbGUtYWN0aW9u
-      - run: |
+      - name: Verify result
+        run: |
           ACTUAL=$(cat ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
           EXPECTED="apple-provisioning-profile-action"
           [[ "$ACTUAL" = "$EXPECTED" ]] && exit 0 || exit 1
@@ -22,7 +23,8 @@ jobs:
         uses: ./
         with:
           profile-file: $RUNNER_TEMP/fake.mobileprovision
-      - run: |
+      - name: Verify result
+        run: |
           ACTUAL=$(cat ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
           EXPECTED="apple-provisioning-profile-action-2"
           [[ "$ACTUAL" = "$EXPECTED" ]] && exit 0 || exit 1
@@ -36,7 +38,8 @@ jobs:
         with:
           profile-base64: YXBwbGUtcHJvdmlzaW9uaW5nLXByb2ZpbGUtYWN0aW9u
           profile-file: $RUNNER_TEMP/fake.mobileprovision
-      - run: |
+      - name: Verify result
+        run: |
           ACTUAL=$(cat ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
           EXPECTED="apple-provisioning-profile-action"
           [[ "$ACTUAL" = "$EXPECTED" ]] && exit 0 || exit 1
