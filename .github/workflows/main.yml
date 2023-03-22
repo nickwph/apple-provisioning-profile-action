@@ -1,4 +1,4 @@
-name: Main testing workflow
+name: Main
 on: [push, pull_request, workflow_dispatch]
 jobs:
   test:
@@ -25,6 +25,7 @@ jobs:
         with:
           profile-file: $RUNNER_TEMP/fake.mobileprovision
       - run: ls -la ~/Library/MobileDevice/Provisioning\ Profiles
+      - run: cat ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision
       - name: Verify result
         run: |
           ACTUAL=$(cat ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
