@@ -10,9 +10,9 @@ jobs:
         with:
           profile-base64: YXBwbGUtcHJvdmlzaW9uaW5nLXByb2ZpbGUtYWN0aW9u
       - run: |
-        ACTUAL=$(~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
-        EXPECTED="apple-provisioning-profile-action"
-        [[ "$ACTUAL" = "$EXPECTED" ]] && exit 0 || exit 1
+          ACTUAL=$(~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
+          EXPECTED="apple-provisioning-profile-action"
+          [[ "$ACTUAL" = "$EXPECTED" ]] && exit 0 || exit 1
   test-with-file:
     runs-on: macos-latest
     steps:
@@ -23,9 +23,9 @@ jobs:
         with:
           profile-file: $RUNNER_TEMP/fake.mobileprovision
       - run: |
-        ACTUAL=$(~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
-        EXPECTED="apple-provisioning-profile-action-2"
-        [[ "$ACTUAL" = "$EXPECTED" ]] && exit 0 || exit 1
+          ACTUAL=$(~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
+          EXPECTED="apple-provisioning-profile-action-2"
+          [[ "$ACTUAL" = "$EXPECTED" ]] && exit 0 || exit 1
   test-base64-override-file:
     runs-on: macos-latest
     steps:
@@ -37,6 +37,6 @@ jobs:
           profile-base64: YXBwbGUtcHJvdmlzaW9uaW5nLXByb2ZpbGUtYWN0aW9u
           profile-file: $RUNNER_TEMP/fake.mobileprovision
       - run: |
-        ACTUAL=$(~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
-        EXPECTED="apple-provisioning-profile-action"
-        [[ "$ACTUAL" = "$EXPECTED" ]] && exit 0 || exit 1
+          ACTUAL=$(~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision)
+          EXPECTED="apple-provisioning-profile-action"
+          [[ "$ACTUAL" = "$EXPECTED" ]] && exit 0 || exit 1
